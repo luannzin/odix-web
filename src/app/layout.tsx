@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
 	title: "Odix - An offline note taking app",
@@ -21,7 +22,14 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR" className="dark">
-			<body className={`${roboto.className} antialiased`}>{children}</body>
+			<body
+				className={`${roboto.className} antialiased flex justify-center max-w-screen overflow-x-hidden`}
+			>
+				<main className="max-w-screen-md w-full min-h-screen">
+					<Toaster richColors closeButton />
+					{children}
+				</main>
+			</body>
 		</html>
 	);
 }
