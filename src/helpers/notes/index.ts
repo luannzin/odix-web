@@ -15,6 +15,25 @@ const addNote = async (note: Partial<Note>) => {
 	};
 
 	await notes_store.setItem(note_id, new_note);
+
+	return new_note;
 };
 
-export { addNote };
+const getNotes = async () => {
+	const notes = await notes_store.keys();
+	const notes_data = (await Promise.all(
+		notes.map(async (note) => {
+			const note_data = await notes_store.getItem(note);
+			return note_data;
+		}),
+	)) as Note[];
+
+	return notes_data;
+};
+
+const getNote = async (note_id: string) => {
+	const note = await notes_store.getItem(note_id);
+	return note;
+};
+
+export { addNote, getNotes, getNote };
