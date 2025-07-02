@@ -4,9 +4,12 @@ import type { Note } from "@/src/types/notes";
 const addNote = async (note: Partial<Note>) => {
 	const note_id = crypto.randomUUID();
 
+	if (!note.content) {
+		throw new Error("Insira um conteúdo para a nota.");
+	}
+
 	const new_note: Note = {
 		id: note_id,
-		title: note.title || "",
 		content: note.content || "",
 		meta: {
 			created_at: new Date(),
@@ -28,7 +31,9 @@ const getNotes = async () => {
 		}),
 	)) as Note[];
 
-	return notes_data;
+	return notes_data.sort((a, b) => {
+		return b.meta.created_at.getTime() - a.meta.created_at.getTime();
+	});
 };
 
 const getNote = async (note_id: string) => {
