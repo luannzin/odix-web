@@ -168,7 +168,7 @@ export default function Feed() {
 			</div>
 			<div className="flex flex-col gap-2 sm:px-4">
 				{notes.map((note) => (
-					<div key={note.id} className="py-4 rounded-xl flex flex-col gap-2">
+					<div key={note.id} className="py-4 sm:px-4 rounded-xl flex flex-col gap-2">
 						<span className="text-sm text-zinc-500">
 							@{note.user.username} -{" "}
 							{note.meta.created_at.toLocaleString("pt-BR", {
