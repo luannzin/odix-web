@@ -4,6 +4,9 @@ type Note = {
 	id: string;
 	content: string;
 	meta: Meta;
+	user: {
+		username: string;
+	};
 };
 
 export type { Note };

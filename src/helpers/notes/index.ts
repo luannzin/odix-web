@@ -1,19 +1,31 @@
 import { notes_store } from "@/src/db/notes";
 import type { Note } from "@/src/types/notes";
+import type { User } from "@/src/types/user";
 
-const addNote = async (note: Partial<Note>) => {
+const addNote = async ({
+	content,
+	user,
+}: {
+	content: string;
+	user: {
+		username: string;
+	};
+}) => {
 	const note_id = crypto.randomUUID();
 
-	if (!note.content) {
+	if (!content) {
 		throw new Error("Insira um conteúdo para a nota.");
 	}
 
 	const new_note: Note = {
 		id: note_id,
-		content: note.content || "",
+		content: content || "",
 		meta: {
 			created_at: new Date(),
 			updated_at: new Date(),
+		},
+		user: {
+			username: user.username || "",
 		},
 	};
 
