@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
 	title: "Odix - An offline note taking app",
@@ -25,7 +26,8 @@ export default function RootLayout({
 			<body
 				className={`${roboto.className} antialiased flex justify-center max-w-screen overflow-x-hidden`}
 			>
-				<main className="max-w-screen-md w-full min-h-screen">
+				<main className="max-w-screen-md w-full min-h-screen max-sm:px-8">
+					<NextTopLoader color="#0ea5e9" showSpinner={false} />
 					<Toaster richColors closeButton />
 					{children}
 				</main>
