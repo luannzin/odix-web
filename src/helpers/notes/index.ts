@@ -1,6 +1,5 @@
 import { notes_store } from "@/src/db/notes";
 import type { Note } from "@/src/types/notes";
-import type { User } from "@/src/types/user";
 
 const addNote = async ({
 	content,
